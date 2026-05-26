@@ -236,17 +236,20 @@
         tbody.innerHTML = '';
 
         products.forEach(p => {
-            const row = `<tr>
-                <td>${p.id}</td>
-                <td>${p.name}</td>
-                <td>${p.cost} грн</td>
-                <td>${p.kol} шт.</td>
-                <td>${p.date}</td>
-            </tr>`;
-            tbody.innerHTML += row;
+            tbody.appendChild(createRow(p));
         });
     }
 
+    // Додаткова функція для створення рядка (DRY принцип)
+    function createRow(p) {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${p.id}</td>
+                        <td>${p.name}</td>
+                        <td>${p.cost} грн</td>
+                        <td>${p.kol} шт.</td>
+                        <td>${p.date}</td>`;
+        return tr;
+    }
     // ДОДАННЯ ТОВАРУ
     function addProduct() {
         const name = document.getElementById('tov-name').value.trim();
